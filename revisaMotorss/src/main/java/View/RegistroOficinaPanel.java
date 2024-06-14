@@ -1,7 +1,6 @@
 package View;
 
 import javax.swing.*;
-import javax.swing.table.*;
 import java.awt.event.ActionListener;
 
 public class RegistroOficinaPanel extends JPanel {
@@ -18,7 +17,7 @@ public class RegistroOficinaPanel extends JPanel {
         setLayout(null);
 
         JLabel labelNome = new JLabel("Nome:");
-        labelNome.setBounds(10, 10, 100, 25);
+        labelNome.setBounds(30, 10, 100, 25);
         add(labelNome);
 
         textFieldNome = new JTextField();
@@ -26,7 +25,7 @@ public class RegistroOficinaPanel extends JPanel {
         add(textFieldNome);
 
         JLabel labelCNPJ = new JLabel("CNPJ:");
-        labelCNPJ.setBounds(10, 50, 100, 25);
+        labelCNPJ.setBounds(30, 50, 100, 25);
         add(labelCNPJ);
 
         textFieldCNPJ = new JTextField();
@@ -34,7 +33,7 @@ public class RegistroOficinaPanel extends JPanel {
         add(textFieldCNPJ);
 
         JLabel labelEndereco = new JLabel("Endereço:");
-        labelEndereco.setBounds(10, 90, 100, 25);
+        labelEndereco.setBounds(30, 90, 100, 25);
         add(labelEndereco);
 
         textFieldEndereco = new JTextField();
@@ -42,7 +41,7 @@ public class RegistroOficinaPanel extends JPanel {
         add(textFieldEndereco);
 
         JLabel labelSenha = new JLabel("Senha:");
-        labelSenha.setBounds(10, 130, 100, 25);
+        labelSenha.setBounds(30, 130, 100, 25);
         add(labelSenha);
 
         passwordField = new JPasswordField();
@@ -50,11 +49,11 @@ public class RegistroOficinaPanel extends JPanel {
         add(passwordField);
 
         buttonRegistrar = new JButton("Registrar");
-        buttonRegistrar.setBounds(10, 170, 150, 25);
+        buttonRegistrar.setBounds(68, 170, 150, 25);
         add(buttonRegistrar);
 
         buttonVoltar = new JButton("Voltar");
-        buttonVoltar.setBounds(170, 170, 150, 25);
+        buttonVoltar.setBounds(222, 170, 150, 25);
         add(buttonVoltar);
 
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));

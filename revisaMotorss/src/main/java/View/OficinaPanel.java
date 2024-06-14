@@ -59,6 +59,10 @@ public class OficinaPanel extends JPanel {
     public String getDetalhesServico() {
         return textAreaDetalhesServico.getText();
     }
+    
+     public int getSelectedAgendamentoRow() {
+        return tableAgendamentos.getSelectedRow();
+    }
 
     public void setAgendamentos(Object[][] dados, String[] colunas) {
         tableAgendamentos.setModel(new DefaultTableModel(dados, colunas));

@@ -2,8 +2,10 @@ package View;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import Model.Cliente;
 
 public class RegistroClientePanel extends JPanel {
+    private Cliente cliente;
     private MainView mainView;
     private JTextField textFieldNome;
     private JTextField textFieldCPF;
@@ -17,15 +19,16 @@ public class RegistroClientePanel extends JPanel {
         setLayout(null);
 
         JLabel labelNome = new JLabel("Nome:");
-        labelNome.setBounds(10, 10, 100, 25);
+        labelNome.setBounds(30, 10, 100, 25);
         add(labelNome);
 
         textFieldNome = new JTextField();
         textFieldNome.setBounds(120, 10, 200, 25);
-        add(textFieldNome);
+        String strNome = textFieldNome.getText();
+        cliente.setNome(strNome);
 
         JLabel labelCPF = new JLabel("CPF:");
-        labelCPF.setBounds(10, 50, 100, 25);
+        labelCPF.setBounds(30, 50, 100, 25);
         add(labelCPF);
 
         textFieldCPF = new JTextField();
@@ -33,7 +36,7 @@ public class RegistroClientePanel extends JPanel {
         add(textFieldCPF);
 
         JLabel labelEmail = new JLabel("Email:");
-        labelEmail.setBounds(10, 90, 100, 25);
+        labelEmail.setBounds(30, 90, 100, 25);
         add(labelEmail);
 
         textFieldEmail = new JTextField();
@@ -41,7 +44,7 @@ public class RegistroClientePanel extends JPanel {
         add(textFieldEmail);
 
         JLabel labelSenha = new JLabel("Senha:");
-        labelSenha.setBounds(10, 130, 100, 25);
+        labelSenha.setBounds(30, 130, 100, 25);
         add(labelSenha);
 
         passwordField = new JPasswordField();
@@ -49,11 +52,11 @@ public class RegistroClientePanel extends JPanel {
         add(passwordField);
 
         buttonRegistrar = new JButton("Registrar");
-        buttonRegistrar.setBounds(10, 170, 150, 25);
+        buttonRegistrar.setBounds(68, 170, 150, 25);
         add(buttonRegistrar);
 
         buttonVoltar = new JButton("Voltar");
-        buttonVoltar.setBounds(170, 170, 150, 25);
+        buttonVoltar.setBounds(222, 170, 150, 25);
         add(buttonVoltar);
 
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));
@@ -61,22 +64,8 @@ public class RegistroClientePanel extends JPanel {
 
     public void addRegistrarListener(ActionListener listener) {
         buttonRegistrar.addActionListener(listener);
+        //ClienteCTRL vai pegar os dados aqui e inserir no BD
     }
-
-    public String getNome() {
-        return textFieldNome.getText();
-    }
-
-    public String getCPF() {
-        return textFieldCPF.getText();
-    }
-
-    public String getEmail() {
-        return textFieldEmail.getText();
-    }
-
-    public String getSenha() {
-        return new String(passwordField.getPassword());
-    }
+    
 }
 

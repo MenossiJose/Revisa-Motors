@@ -8,8 +8,8 @@ public class MainView extends JFrame {
     private CardLayout cardLayout;
 
     public MainView() {
-        setTitle("Sistema de Revisão de Carros");
-        setSize(800, 600);
+        setTitle("Revisa Motors");
+        setSize(440, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cardLayout = new CardLayout();
@@ -21,6 +21,10 @@ public class MainView extends JFrame {
         panelContainer.add(new RegistroOficinaPanel(this), "RegistroOficinaPanel");
         panelContainer.add(new ClientePanel(this), "ClientePanel");
         panelContainer.add(new OficinaPanel(this), "OficinaPanel");
+        panelContainer.add(new ClientePanel(this), "ClientePanel");
+        panelContainer.add(new RevisaoPanel(), "RevisaoPanel");
+        panelContainer.add(new OficinaPanel(this), "OficinaPanel");
+
 
         // Adicionar container ao JFrame
         add(panelContainer);
