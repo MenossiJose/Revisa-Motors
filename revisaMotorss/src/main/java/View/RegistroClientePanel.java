@@ -3,9 +3,10 @@ package View;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import Model.Cliente;
+import Controller.ClienteCTRL;
+import java.awt.event.ActionEvent;
 
 public class RegistroClientePanel extends JPanel {
-    private Cliente cliente;
     private MainView mainView;
     private JTextField textFieldNome;
     private JTextField textFieldCPF;
@@ -17,15 +18,14 @@ public class RegistroClientePanel extends JPanel {
     public RegistroClientePanel(MainView mainView) {
         this.mainView = mainView;
         setLayout(null);
-
+        
         JLabel labelNome = new JLabel("Nome:");
         labelNome.setBounds(30, 10, 100, 25);
         add(labelNome);
 
         textFieldNome = new JTextField();
         textFieldNome.setBounds(120, 10, 200, 25);
-        String strNome = textFieldNome.getText();
-        cliente.setNome(strNome);
+        add(textFieldNome);
 
         JLabel labelCPF = new JLabel("CPF:");
         labelCPF.setBounds(30, 50, 100, 25);
@@ -60,11 +60,24 @@ public class RegistroClientePanel extends JPanel {
         add(buttonVoltar);
 
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));
-    }
-
-    public void addRegistrarListener(ActionListener listener) {
-        buttonRegistrar.addActionListener(listener);
-        //ClienteCTRL vai pegar os dados aqui e inserir no BD
+        
+         buttonRegistrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Instancia Cliente Ctrl
+                ClienteCTRL clienteCTRL = new ClienteCTRL();
+                //Define atributos
+                String nome = textFieldNome.getText();
+                int cpf = Integer.parseInt(textFieldCPF.getText());
+                String email = textFieldEmail.getText();
+                char[] passwordChars = passwordField.getPassword();
+                String password = new String(passwordChars);
+                //Instancia Cliente com construtor
+                Cliente cliente = new Cliente(nome, cpf, email, password);
+                //Envia para Controller
+                clienteCTRL.registrarCliente(cliente);
+            }
+        });
     }
     
 }
