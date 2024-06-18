@@ -22,8 +22,9 @@ public class MainView extends JFrame {
         panelContainer.add(new ClientePanel(this), "ClientePanel");
         panelContainer.add(new OficinaPanel(this), "OficinaPanel");
         panelContainer.add(new ClientePanel(this), "ClientePanel");
-        panelContainer.add(new RevisaoPanel(), "RevisaoPanel");
+        panelContainer.add(new RevisaoPanel(this), "RevisaoPanel");
         panelContainer.add(new OficinaPanel(this), "OficinaPanel");
+        panelContainer.add(new Veiculopanel(this), "VeiculoPanel");
 
 
         // Adicionar container ao JFrame

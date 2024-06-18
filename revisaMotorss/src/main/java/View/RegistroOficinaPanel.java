@@ -2,6 +2,9 @@ package View;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import Model.Oficina;
+import Controller.OficinaCTRL;
 
 public class RegistroOficinaPanel extends JPanel {
     private MainView mainView;
@@ -57,25 +60,23 @@ public class RegistroOficinaPanel extends JPanel {
         add(buttonVoltar);
 
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));
-    }
-
-    public void addRegistrarListener(ActionListener listener) {
-    buttonRegistrar.addActionListener(listener);
-    }
-
-    public String getNome() {
-        return textFieldNome.getText();
-    }
-
-    public String getCNPJ() {
-        return textFieldCNPJ.getText();
-    }
-
-    public String getEndereco() {
-        return textFieldEndereco.getText();
-    }
-
-    public String getSenha() {
-        return new String(passwordField.getPassword());
+        
+        buttonRegistrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Instancia Oficina Ctrl
+                OficinaCTRL oficinaCTRL = new OficinaCTRL();
+                //Define atributos
+                String nome = textFieldNome.getText();
+                int cnpj = Integer.parseInt(textFieldCNPJ.getText());
+                String endereco = textFieldEndereco.getText();
+                char[] passwordChars = passwordField.getPassword();
+                String password = new String(passwordChars);
+                //Instancia Oficina com construtor
+                Oficina oficina = new Oficina(nome, cnpj, endereco, password);
+                //Envia para Controller
+                oficinaCTRL.registrarOficina(oficina);
+            }
+        });
     }
 }

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class RevisaoPanel extends JPanel {
+    private MainView mainView;
     private JTextField textFieldData;
     private JTextField textFieldHora;
     private JTextField textFieldOficina;
@@ -11,8 +12,10 @@ public class RevisaoPanel extends JPanel {
     private JTextArea textAreaDetalhesServico;
     private JButton buttonSalvar;
     private JButton buttonCancelar;
+    private JButton buttonVoltar;
 
-    public RevisaoPanel() {
+    public RevisaoPanel(MainView mainView) {
+        this.mainView = mainView;
         setLayout(null);
 
         JLabel labelData = new JLabel("Data:");
@@ -65,6 +68,14 @@ public class RevisaoPanel extends JPanel {
         buttonCancelar = new JButton("Cancelar");
         buttonCancelar.setBounds(120, 480, 100, 25);
         add(buttonCancelar);
+        
+        buttonVoltar = new JButton("Voltar");
+        buttonVoltar.setBounds(120, 520, 100, 25);
+        add(buttonVoltar);
+        
+        buttonVoltar.addActionListener(e -> mainView.showPanel("ClientePanel"));
+        
+        
     }
 
     public void addSalvarListener(ActionListener listener) {

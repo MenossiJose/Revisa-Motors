@@ -8,6 +8,7 @@ import java.util.List;
 public class ClientePanel extends JPanel {
     private MainView mainView;
     private JTable tableVeiculos;
+    private JButton buttonAdicionarVeiculo;
     private JButton buttonAgendarRevisao;
     private JButton buttonConsultarHistorico;
     private JButton buttonVoltar;
@@ -15,6 +16,10 @@ public class ClientePanel extends JPanel {
     public ClientePanel(MainView mainView) {
         this.mainView = mainView;
         setLayout(null);
+        
+        buttonAdicionarVeiculo = new JButton("Adicionar Veículo");
+        buttonAdicionarVeiculo.setBounds(10, 40, 150, 25);
+        add(buttonAdicionarVeiculo);
 
         JLabel labelVeiculos = new JLabel("Veículos:");
         labelVeiculos.setBounds(10, 100, 120, 25);
@@ -38,14 +43,9 @@ public class ClientePanel extends JPanel {
         add(buttonVoltar);
 
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));
-    }
-
-    public void addAgendarRevisaoListener(ActionListener listener) {
-        buttonAgendarRevisao.addActionListener(listener);
-    }
-
-    public void addConsultarHistoricoListener(ActionListener listener) {
-        buttonConsultarHistorico.addActionListener(listener);
+        buttonAdicionarVeiculo.addActionListener(e -> mainView.showPanel("VeiculoPanel"));
+        buttonAgendarRevisao.addActionListener(e -> mainView.showPanel("RevisaoPanel"));
+        
     }
 
 
