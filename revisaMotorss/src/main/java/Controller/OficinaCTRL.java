@@ -4,6 +4,8 @@ import Model.Oficina;
 
 public class OficinaCTRL {
     
+    private Oficina oficina;
+    
         public void registrarOficina(Oficina oficina) {
         // Aqui você pode inserir o cliente no banco de dados
         // Para este exemplo, vamos apenas imprimir os dados do cliente
@@ -11,7 +13,7 @@ public class OficinaCTRL {
         System.out.println(oficina.getCnpj());
         System.out.println(oficina.getEndereco());
         System.out.println(oficina.getSenha());
-
+        this.oficina = oficina;
     }
         
 }

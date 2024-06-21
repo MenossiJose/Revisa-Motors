@@ -5,6 +5,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import Model.Cliente;
+
 public class ClientePanel extends JPanel {
     private MainView mainView;
     private JTable tableVeiculos;

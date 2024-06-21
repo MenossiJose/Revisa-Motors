@@ -2,9 +2,11 @@ package View;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import Model.Cliente;
-import Controller.ClienteCTRL;
 import java.awt.event.ActionEvent;
+
+import Model.Cliente;
+
+import Controller.ClienteCTRL;
 
 public class RegistroClientePanel extends JPanel {
     private MainView mainView;
@@ -64,18 +66,26 @@ public class RegistroClientePanel extends JPanel {
          buttonRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Instancia Cliente Ctrl
-                ClienteCTRL clienteCTRL = new ClienteCTRL();
-                //Define atributos
-                String nome = textFieldNome.getText();
-                int cpf = Integer.parseInt(textFieldCPF.getText());
-                String email = textFieldEmail.getText();
-                char[] passwordChars = passwordField.getPassword();
-                String password = new String(passwordChars);
-                //Instancia Cliente com construtor
-                Cliente cliente = new Cliente(nome, cpf, email, password);
-                //Envia para Controller
-                clienteCTRL.registrarCliente(cliente);
+                ClienteCTRL clienteCTRL = mainView.getClienteCTRL();
+                
+                if (clienteCTRL != null) {
+                    String nome = textFieldNome.getText();
+                    int cpf = Integer.parseInt(textFieldCPF.getText());
+                    String email = textFieldEmail.getText();
+                    char[] passwordChars = passwordField.getPassword();
+                    String password = new String(passwordChars);
+                    
+                    Cliente cliente = new Cliente(nome, cpf, email, password);
+                    clienteCTRL.registrarCliente(cliente);
+                    
+                    // Insere cliente no banco de dados usando ClienteCTRL
+                    //clienteCTRL.inserirCliente(cliente);
+                    
+                    mainView.showPanel("LoginPanel");
+                    
+                } else {
+                    JOptionPane.showMessageDialog(RegistroClientePanel.this, "Erro: ClienteCTRL não inicializado corretamente.");
+                }
             }
         });
     }

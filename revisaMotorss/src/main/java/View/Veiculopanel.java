@@ -3,9 +3,11 @@ package View;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import Model.Veiculo;
-import Controller.VeiculoCTRL;
 
+import Controller.ClienteCTRL;
+
+import Model.Cliente;
+import Model.Veiculo;
 
 public class Veiculopanel extends JPanel {
     private MainView mainView;
@@ -66,7 +68,7 @@ public class Veiculopanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Instancia Veiculo Ctrl
-                VeiculoCTRL veiculoCTRL = new VeiculoCTRL();
+                ClienteCTRL clienteCTRL = mainView.getClienteCTRL();
                 // Define atributos
                 String marca = textFieldMarca.getText();
                 String modelo = textFieldModelo.getText();
@@ -75,7 +77,8 @@ public class Veiculopanel extends JPanel {
                 // Instancia Veiculo com construtor
                 Veiculo veiculo = new Veiculo(marca, modelo, ano, placa);
                 // Envia para Controller
-                veiculoCTRL.registrarVeiculo(veiculo);
+                clienteCTRL.registrarVeiculoCliente(veiculo);
+
             }
         });
     }

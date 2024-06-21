@@ -50,5 +50,4 @@ public class Veiculo {
         this.placa = placa;
     }
     
-    //ADICIONAR VEICULO
 }

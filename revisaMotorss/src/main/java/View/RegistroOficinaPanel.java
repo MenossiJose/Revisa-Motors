@@ -65,7 +65,8 @@ public class RegistroOficinaPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Instancia Oficina Ctrl
-                OficinaCTRL oficinaCTRL = new OficinaCTRL();
+                OficinaCTRL oficinaCTRL = mainView.getOficinaCTRL();
+                if (oficinaCTRL != null) {
                 //Define atributos
                 String nome = textFieldNome.getText();
                 int cnpj = Integer.parseInt(textFieldCNPJ.getText());
@@ -76,6 +77,12 @@ public class RegistroOficinaPanel extends JPanel {
                 Oficina oficina = new Oficina(nome, cnpj, endereco, password);
                 //Envia para Controller
                 oficinaCTRL.registrarOficina(oficina);
+                
+                 mainView.showPanel("LoginPanel");
+                }
+                else{
+                   JOptionPane.showMessageDialog(RegistroOficinaPanel.this, "Erro: OficinaCTRL não inicializado corretamente.");
+                }
             }
         });
     }

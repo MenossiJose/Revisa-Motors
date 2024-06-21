@@ -12,7 +12,6 @@ public class LoginPanel extends JPanel {
     private JButton buttonRegistroCliente;
     private JButton buttonRegistroOficina;
     private JButton buttonOficinaPanel;
-    private JButton buttonRevisaoPanel;
     private JButton buttonClientePanel;
     
 
@@ -56,35 +55,16 @@ public class LoginPanel extends JPanel {
         buttonOficinaPanel.setBounds(222, 180, 150, 25);
         add(buttonOficinaPanel);
         
-        buttonRevisaoPanel = new JButton("Revisao Panel");
-        buttonRevisaoPanel.setBounds(68, 180, 150, 25);
-        add(buttonRevisaoPanel);
-        
         buttonClientePanel = new JButton("Cliente Panel");
-        buttonClientePanel.setBounds(222, 220, 150, 25);
+        buttonClientePanel.setBounds(68, 180, 150, 25);
         add(buttonClientePanel);
         
 
         buttonOficinaPanel.addActionListener(e -> mainView.showPanel("OficinaPanel"));
-        buttonRevisaoPanel.addActionListener(e -> mainView.showPanel("RevisaoPanel"));
         buttonClientePanel.addActionListener(e -> mainView.showPanel("ClientePanel"));
         buttonRegistroCliente.addActionListener(e -> mainView.showPanel("RegistroClientePanel"));
         buttonRegistroOficina.addActionListener(e -> mainView.showPanel("RegistroOficinaPanel"));
     }
 
-    public void addLoginClienteListener(ActionListener listener) {
-        buttonLoginCliente.addActionListener(listener);
-    }
-
-    public void addLoginOficinaListener(ActionListener listener) {
-        buttonLoginOficina.addActionListener(listener);
-    }
-
-    public String getUsuario() {
-        return textFieldUsuario.getText();
-    }
-
-    public String getSenha() {
-        return new String(passwordField.getPassword());
-    }
+    
 }
