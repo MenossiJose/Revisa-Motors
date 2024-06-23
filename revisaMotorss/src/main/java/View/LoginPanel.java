@@ -3,6 +3,10 @@ package View;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+import Controller.LoginCTRL;
+import Controller.ClienteCTRL;
+import Controller.OficinaCTRL;
+
 public class LoginPanel extends JPanel {
     private MainView mainView;
     private JTextField textFieldUsuario;
@@ -14,8 +18,15 @@ public class LoginPanel extends JPanel {
     private JButton buttonOficinaPanel;
     private JButton buttonClientePanel;
     
+    private LoginCTRL controller;
+    private OficinaCTRL ofController;
+    private ClienteCTRL clController;
+    
 
     public LoginPanel(MainView mainView) {
+        controller = new LoginCTRL(this);
+        ofController = new OficinaCTRL(controller);
+        clController = new ClienteCTRL(controller);
         this.mainView = mainView;
         setLayout(null);
 
@@ -59,12 +70,67 @@ public class LoginPanel extends JPanel {
         buttonClientePanel.setBounds(68, 180, 150, 25);
         add(buttonClientePanel);
         
+        buttonLoginCliente.addActionListener(e -> buttonLoginClienteActionPerformed(e));
+        buttonLoginOficina.addActionListener(e -> buttonLoginOficinaActionPerformed(e));
 
         buttonOficinaPanel.addActionListener(e -> mainView.showPanel("OficinaPanel"));
         buttonClientePanel.addActionListener(e -> mainView.showPanel("ClientePanel"));
         buttonRegistroCliente.addActionListener(e -> mainView.showPanel("RegistroClientePanel"));
         buttonRegistroOficina.addActionListener(e -> mainView.showPanel("RegistroOficinaPanel"));
     }
-
     
+    private void buttonLoginClienteActionPerformed(java.awt.event.ActionEvent evt){
+        this.controller.bancoTeste();
+        if(this.controller.validaCliente()){
+            this.controller.entrarNoSistemaCliente();
+            clController.puxarCliente();
+            this.mainView.showPanel("ClientePanel");
+        }  
+        else{
+            JOptionPane.showMessageDialog(null, "Erro");
+        }
+        
+    }
+    
+    private void buttonLoginOficinaActionPerformed(java.awt.event.ActionEvent evt){
+        this.controller.bancoTeste();
+        if(this.controller.validaOficina()){
+            this.controller.entrarNoSistemaOficina();
+            ofController.puxarOficina();
+            this.mainView.showPanel("OficinaPanel");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Erro");
+        }
+    }
+    
+    public void exibeMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
+    
+    
+    //Informações Cliente
+    public JTextField getTextFieldUsuario() {
+        return textFieldUsuario;
+    }
+
+    public void setTextFieldUsuario(JTextField textFieldUsuario) {
+        this.textFieldUsuario = textFieldUsuario;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public void setPasswordField(JPasswordField passwordField) {
+        this.passwordField = passwordField;
+    }
+    
+    //Informações Oficina
+    
+    
+    
+
 }
+
+

@@ -77,7 +77,7 @@ public class Veiculopanel extends JPanel {
                 // Instancia Veiculo com construtor
                 Veiculo veiculo = new Veiculo(marca, modelo, ano, placa);
                 // Envia para Controller
-                clienteCTRL.registrarVeiculoCliente(veiculo);
+                //clienteCTRL.registrarVeiculoCliente(veiculo);
 
             }
         });
