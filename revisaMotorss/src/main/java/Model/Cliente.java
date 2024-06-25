@@ -34,7 +34,7 @@ public class Cliente {
     }*/
     
     public Cliente(){
-        
+        this.veiculos = new ArrayList<>(); 
     }
 
     public String getNome() {

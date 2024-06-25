@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import Model.Cliente;
+import Model.Veiculo;
 
 public class ClientePanel extends JPanel {
     private MainView mainView;
-    private JTable tableVeiculos;
+    private JList<String> listVeiculos;
+    private DefaultListModel<String> listModelVeiculos;
     private JButton buttonAdicionarVeiculo;
     private JButton buttonAgendarRevisao;
     private JButton buttonConsultarHistorico;
@@ -27,10 +29,14 @@ public class ClientePanel extends JPanel {
         labelVeiculos.setBounds(10, 100, 120, 25);
         add(labelVeiculos);
 
-        tableVeiculos = new JTable();
-        JScrollPane scrollPaneVeiculos = new JScrollPane(tableVeiculos);
-        scrollPaneVeiculos.setBounds(10, 130, 760, 200);
-        add(scrollPaneVeiculos);
+        
+        //JLIST
+        listModelVeiculos = new DefaultListModel<>();
+        listVeiculos = new JList<>(listModelVeiculos);
+        JScrollPane scrollPane = new JScrollPane(listVeiculos);
+        scrollPane.setBounds(10, 130, 300, 200);
+        add(scrollPane);
+    
 
         buttonAgendarRevisao = new JButton("Agendar Revisão");
         buttonAgendarRevisao.setBounds(10, 340, 150, 25);
@@ -41,7 +47,7 @@ public class ClientePanel extends JPanel {
         add(buttonConsultarHistorico);
         
         buttonVoltar = new JButton("Voltar");
-        buttonVoltar.setBounds(10, 430, 150, 25);
+        buttonVoltar.setBounds(10, 380, 150, 25);
         add(buttonVoltar);
 
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));
@@ -49,6 +55,14 @@ public class ClientePanel extends JPanel {
         buttonAgendarRevisao.addActionListener(e -> mainView.showPanel("RevisaoPanel"));
         
     }
+    public void atualizarListaVeiculos(List<Veiculo> veiculos) {
+        listModelVeiculos.clear();
+        for (Veiculo veiculo : veiculos) {
+            listModelVeiculos.addElement(veiculo.getMarca() + " " + veiculo.getModelo());
+        }
+    } 
+    
+    
 
 
 }

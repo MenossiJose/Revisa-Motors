@@ -11,18 +11,19 @@ public class LoginCTRL {
     private Oficina oficina;
     private LoginPanel view;
     
+       
     public LoginCTRL(LoginPanel view){
         this.view = view;
         
     }
     
-    public LoginCTRL(){
-        
-    }
-    
     public boolean validaCliente(){
          //Procurar no bd um usuário que tenha o mesmo usuário e senha e atribuir
-        cliente = new Cliente();
+        cliente = view.getMainView().getCliente();
+        cliente.setNome("Jose");
+        cliente.setCpf(123);
+        cliente.setEmail("teste");
+        cliente.setSenha("123");
         //Testando os dados na memoria depois troca pro bd
         String usuario = view.getTextFieldUsuario().getText();
         char[] passwordChars = view.getPasswordField().getPassword();
@@ -65,13 +66,6 @@ public class LoginCTRL {
     
     public Oficina entrarNoSistemaOficina(){
         return oficina;
-    }
-    
-    
-    //Teste que vi no youtube
-    public void bancoTeste(){
-        System.out.println("busquei algo no bd");
-        this.view.exibeMensagem("Executei tarefa no bd");
     }
     
 }

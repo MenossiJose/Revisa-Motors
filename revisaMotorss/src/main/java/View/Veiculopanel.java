@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import Controller.ClienteCTRL;
+import Controller.VeiculoCTRL;
 
 import Model.Cliente;
 import Model.Veiculo;
@@ -18,7 +19,11 @@ public class Veiculopanel extends JPanel {
     private JButton buttonRegistrar;
     private JButton buttonVoltar;
     
+    private Veiculo veiculo;
+    private VeiculoCTRL veiculoCTRL;
+    
     public Veiculopanel(MainView mainView) {
+        veiculoCTRL = new VeiculoCTRL(this);
         this.mainView = mainView;
         setLayout(null);
 
@@ -62,25 +67,61 @@ public class Veiculopanel extends JPanel {
         buttonVoltar.setBounds(260, 170, 100, 25);
         add(buttonVoltar);
         
-        buttonVoltar.addActionListener(e -> mainView.showPanel("ClientePanel"));
-        
-         buttonRegistrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Instancia Veiculo Ctrl
-                ClienteCTRL clienteCTRL = mainView.getClienteCTRL();
-                // Define atributos
-                String marca = textFieldMarca.getText();
-                String modelo = textFieldModelo.getText();
-                int ano = Integer.parseInt(textFieldAno.getText());
-                String placa = textFieldPlaca.getText();
-                // Instancia Veiculo com construtor
-                Veiculo veiculo = new Veiculo(marca, modelo, ano, placa);
-                // Envia para Controller
-                //clienteCTRL.registrarVeiculoCliente(veiculo);
+        buttonVoltar.addActionListener(e -> mainView.showPanel("ClientePanel")); 
+        buttonRegistrar.addActionListener(e -> buttonRegistrarActionPerformed(e));
 
-            }
-        });
+        
     }
+    
+     private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt){
+        veiculo = mainView.getVeiculo();
+        String marca = getTextFieldMarca().getText();
+        String modelo = getTextFieldModelo().getText();
+        int ano = Integer.parseInt(getTextFieldAno().getText());
+        String placa = getTextFieldPlaca().getText();
+        veiculo.setModelo(modelo);
+        veiculo.setAno(ano);
+        veiculo.setMarca(marca);
+        veiculo.setPlaca(placa);
+        this.veiculoCTRL.registrarVeiculoCliente(veiculo);
+    }
+
+    public JTextField getTextFieldMarca() {
+        return textFieldMarca;
+    }
+
+    public void setTextFieldMarca(JTextField textFieldMarca) {
+        this.textFieldMarca = textFieldMarca;
+    }
+
+    public JTextField getTextFieldModelo() {
+        return textFieldModelo;
+    }
+
+    public void setTextFieldModelo(JTextField textFieldModelo) {
+        this.textFieldModelo = textFieldModelo;
+    }
+
+    public JTextField getTextFieldAno() {
+        return textFieldAno;
+    }
+
+    public void setTextFieldAno(JTextField textFieldAno) {
+        this.textFieldAno = textFieldAno;
+    }
+
+    public JTextField getTextFieldPlaca() {
+        return textFieldPlaca;
+    }
+
+    public void setTextFieldPlaca(JTextField textFieldPlaca) {
+        this.textFieldPlaca = textFieldPlaca;
+    }
+
+    public MainView getMainView() {
+        return mainView;
+    }
+    
+    
     
 }

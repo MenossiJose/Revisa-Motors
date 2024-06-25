@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import Controller.LoginCTRL;
 import Controller.ClienteCTRL;
 import Controller.OficinaCTRL;
+import Controller.VeiculoCTRL;
 
 public class LoginPanel extends JPanel {
     private MainView mainView;
@@ -80,7 +81,6 @@ public class LoginPanel extends JPanel {
     }
     
     private void buttonLoginClienteActionPerformed(java.awt.event.ActionEvent evt){
-        this.controller.bancoTeste();
         if(this.controller.validaCliente()){
             this.controller.entrarNoSistemaCliente();
             clController.puxarCliente();
@@ -93,7 +93,6 @@ public class LoginPanel extends JPanel {
     }
     
     private void buttonLoginOficinaActionPerformed(java.awt.event.ActionEvent evt){
-        this.controller.bancoTeste();
         if(this.controller.validaOficina()){
             this.controller.entrarNoSistemaOficina();
             ofController.puxarOficina();
@@ -102,10 +101,6 @@ public class LoginPanel extends JPanel {
         else{
             JOptionPane.showMessageDialog(null, "Erro");
         }
-    }
-    
-    public void exibeMensagem(String mensagem) {
-        JOptionPane.showMessageDialog(null, mensagem);
     }
     
     
@@ -126,11 +121,10 @@ public class LoginPanel extends JPanel {
         this.passwordField = passwordField;
     }
     
-    //Informações Oficina
+    public MainView getMainView(){
+        return mainView;
+    }
     
-    
-    
-
 }
 
 
