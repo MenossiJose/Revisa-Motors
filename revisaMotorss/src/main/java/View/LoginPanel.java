@@ -16,8 +16,6 @@ public class LoginPanel extends JPanel {
     private JButton buttonLoginOficina;
     private JButton buttonRegistroCliente;
     private JButton buttonRegistroOficina;
-    private JButton buttonOficinaPanel;
-    private JButton buttonClientePanel;
     
     private LoginCTRL controller;
     private OficinaCTRL ofController;
@@ -63,19 +61,9 @@ public class LoginPanel extends JPanel {
         buttonRegistroOficina.setBounds(222, 130, 150, 25);
         add(buttonRegistroOficina);
         
-        buttonOficinaPanel = new JButton("Oficina Panel");
-        buttonOficinaPanel.setBounds(222, 180, 150, 25);
-        add(buttonOficinaPanel);
-        
-        buttonClientePanel = new JButton("Cliente Panel");
-        buttonClientePanel.setBounds(68, 180, 150, 25);
-        add(buttonClientePanel);
-        
         buttonLoginCliente.addActionListener(e -> buttonLoginClienteActionPerformed(e));
         buttonLoginOficina.addActionListener(e -> buttonLoginOficinaActionPerformed(e));
 
-        buttonOficinaPanel.addActionListener(e -> mainView.showPanel("OficinaPanel"));
-        buttonClientePanel.addActionListener(e -> mainView.showPanel("ClientePanel"));
         buttonRegistroCliente.addActionListener(e -> mainView.showPanel("RegistroClientePanel"));
         buttonRegistroOficina.addActionListener(e -> mainView.showPanel("RegistroOficinaPanel"));
     }
@@ -102,8 +90,7 @@ public class LoginPanel extends JPanel {
             JOptionPane.showMessageDialog(null, "Erro");
         }
     }
-    
-    
+   
     //Informações Cliente
     public JTextField getTextFieldUsuario() {
         return textFieldUsuario;

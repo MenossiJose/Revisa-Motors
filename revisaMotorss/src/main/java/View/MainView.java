@@ -6,9 +6,12 @@ import Controller.ClienteCTRL;
 import Controller.LoginCTRL;
 import Controller.OficinaCTRL;
 import Controller.VeiculoCTRL;
+import Controller.RevisaoCTRL;
 import Model.Cliente;
 import Model.Oficina;
+import Model.Revisao;
 import Model.Veiculo;
+import java.util.Set;
 
 public class MainView extends JFrame {
     private JPanel panelContainer;
@@ -21,16 +24,19 @@ public class MainView extends JFrame {
     private ClientePanel clientePanel;
     private Veiculopanel veiculoPanel;
     private RevisaoPanel revisaoPanel;
+    private HistoricoPanel historicoPanel;
     
     
     private ClienteCTRL clienteCTRL;
     private OficinaCTRL oficinaCTRL;
+    private RevisaoCTRL revisaoCTRL;
     private LoginCTRL loginCTRL;
     private VeiculoCTRL veiculoCTRL;
 
     private Cliente cliente;
     private Veiculo veiculo;
     private Oficina oficina;
+    private Revisao revisao;
 
     public MainView() {
         setTitle("Revisa Motors");
@@ -39,28 +45,16 @@ public class MainView extends JFrame {
 
         cardLayout = new CardLayout();
         panelContainer = new JPanel(cardLayout);
-        
-        /*
-        // Inicializar modelos
-        oficina = new Oficina();
-        cliente = new Cliente();
-        veiculo = new Veiculo();
 
-        // Inicializar painéis
-        loginPanel = new LoginPanel(this);
-        
-        // Inicializar controladores
-        loginCTRL = new LoginCTRL(loginPanel);
-        loginPanel.setController(loginCTRL);
-        clienteCTRL = new ClienteCTRL();
-        oficinaCTRL = new OficinaCTRL();
-        veiculoCTRL = new VeiculoCTRL();
-*/
         cliente = new Cliente();
         veiculo = new Veiculo();
+        oficina = new Oficina();
+        revisao = new Revisao();
         
         //veiculoCTRL = new VeiculoCTRL();
         clienteCTRL = new ClienteCTRL();
+        oficinaCTRL = new OficinaCTRL();
+        revisaoCTRL = new RevisaoCTRL();
 
         // Inicializar painéis restantes
         loginPanel = new LoginPanel(this);
@@ -70,6 +64,11 @@ public class MainView extends JFrame {
         clientePanel = new ClientePanel(this);
         veiculoPanel = new Veiculopanel(this);
         revisaoPanel = new RevisaoPanel(this);
+        historicoPanel = new HistoricoPanel(this);
+        
+        revisaoCTRL.setController(revisaoPanel);
+ 
+
 
         // Adicionar painéis ao container
         panelContainer.add(loginPanel, "LoginPanel");
@@ -79,6 +78,7 @@ public class MainView extends JFrame {
         panelContainer.add(clientePanel, "ClientePanel");
         panelContainer.add(veiculoPanel, "VeiculoPanel");
         panelContainer.add(revisaoPanel, "RevisaoPanel");
+        panelContainer.add(historicoPanel, "HistoricoPanel");
 
         // Adicionar container ao JFrame
         add(panelContainer);
@@ -111,6 +111,18 @@ public class MainView extends JFrame {
         return cliente;
     }
 
+    public Oficina getOficina() {
+        return oficina;
+    }
+    
+    public OficinaPanel getOficinaPanel() {
+        return oficinaPanel;
+    }
+    
+    public RevisaoCTRL getRevisaoCTRL(){
+        return revisaoCTRL;
+    }
+
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -127,11 +139,16 @@ public class MainView extends JFrame {
         return loginCTRL;
     }
 
+    public HistoricoPanel getHistoricoPanel() {
+        return historicoPanel;
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             MainView mainView = new MainView();
             mainView.setVisible(true);
         });
     }
+
 }
 

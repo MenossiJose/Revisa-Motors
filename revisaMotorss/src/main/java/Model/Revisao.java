@@ -2,27 +2,22 @@ package Model;
 
 public class Revisao {
     //private int codigo;
-    private Cliente cliente;
-    private Oficina oficina;
-    private Veiculo veiculo;
+    private String cliente;
+    private String oficina;
+    private String veiculo;
     private String data;
     private String horas;
     //private String andamento;
-    private String detalhes;
-    private boolean finalizado;
     private String servico;
     
-    public Revisao(Cliente cliente, Oficina oficina, Veiculo veiculo
-                   , String data, String horas, String detalhes,
-                   boolean finalizado, String servico)
+    public Revisao(String cliente, String oficina, String veiculo
+                   , String data, String horas, String servico)  
     {
         this.cliente = cliente;
         this.oficina = oficina;
         this.veiculo = veiculo;
         this.data = data;
         this.horas = horas;
-        this.detalhes = detalhes;
-        this.finalizado = finalizado;
         this.servico = servico;
         
     }
@@ -32,19 +27,19 @@ public class Revisao {
     }
 
 
-    public Cliente getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 
-    public Oficina getOficina() {
+    public String getOficina() {
         return oficina;
     }
 
-    public void setOficina(Oficina oficina) {
+    public void setOficina(String oficina) {
         this.oficina = oficina;
     }
 
@@ -64,22 +59,6 @@ public class Revisao {
         this.horas = horas;
     }
 
-    public String getDetalhes() {
-        return detalhes;
-    }
-
-    public void setDetalhes(String detalhes) {
-        this.detalhes = detalhes;
-    }
-
-    public boolean isFinalizado() {
-        return finalizado;
-    }
-
-    public void setFinalizado(boolean finalizado) {
-        this.finalizado = finalizado;
-    }
-
     public String getServico() {
         return servico;
     }
@@ -88,11 +67,11 @@ public class Revisao {
         this.servico = servico;
     }
 
-    public Veiculo getVeiculo() {
+    public String getVeiculo() {
         return veiculo;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
+    public void setVeiculo(String veiculo) {
         this.veiculo = veiculo;
     }
     

@@ -19,14 +19,14 @@ public class LoginCTRL {
     
     public boolean validaCliente(){
          //Procurar no bd um usuário que tenha o mesmo usuário e senha e atribuir
-        cliente = view.getMainView().getCliente();
+        cliente = getView().getMainView().getCliente();
         cliente.setNome("Jose");
         cliente.setCpf(123);
         cliente.setEmail("teste");
         cliente.setSenha("123");
         //Testando os dados na memoria depois troca pro bd
-        String usuario = view.getTextFieldUsuario().getText();
-        char[] passwordChars = view.getPasswordField().getPassword();
+        String usuario = getView().getTextFieldUsuario().getText();
+        char[] passwordChars = getView().getPasswordField().getPassword();
         String password = new String(passwordChars);
         System.out.println(usuario);
         System.out.println(password);
@@ -47,10 +47,14 @@ public class LoginCTRL {
     
     public boolean validaOficina(){
          //Procurar no bd um usuário que tenha o mesmo usuário e senha e atribuir
-        oficina = new Oficina("a",23, null, null);
+        oficina = getView().getMainView().getOficina();
+        oficina.setNome("Oficina");
+        oficina.setCnpj(1234);
+        oficina.setEndereco("R.SWE");
+        oficina.setSenha("1234");
         //Testando os dados na memoria depois troca pro bd
-        String usuario = view.getTextFieldUsuario().getText();
-        char[] passwordChars = view.getPasswordField().getPassword();
+        String usuario = getView().getTextFieldUsuario().getText();
+        char[] passwordChars = getView().getPasswordField().getPassword();
         String password = new String(passwordChars);
         System.out.println(usuario);
         System.out.println(password);
@@ -66,6 +70,10 @@ public class LoginCTRL {
     
     public Oficina entrarNoSistemaOficina(){
         return oficina;
+    }
+
+    public LoginPanel getView() {
+        return view;
     }
     
 }

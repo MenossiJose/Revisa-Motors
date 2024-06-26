@@ -1,20 +1,25 @@
 package View;
 
+import Controller.RevisaoCTRL;
+import Model.Revisao;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class RevisaoPanel extends JPanel {
     private MainView mainView;
-    private JTextField textFieldData;
-    private JTextField textFieldHora;
-    private JTextField textFieldOficina;
-    private JTextField textFieldModeloVeiculo;
-    private JTextArea textAreaDetalhesServico;
+    public JTextField textFieldData;
+    public JTextField textFieldHora;
+    public JTextField textFieldOficina;
+    public JTextField textFieldModeloVeiculo;
+    public JTextArea textAreaDetalhesServico;
     private JButton buttonSalvar;
     private JButton buttonCancelar;
     private JButton buttonVoltar;
+    
+    private RevisaoCTRL revisaoCTRL;
 
     public RevisaoPanel(MainView mainView) {
+        revisaoCTRL = mainView.getRevisaoCTRL();
         this.mainView = mainView;
         setLayout(null);
 
@@ -65,27 +70,21 @@ public class RevisaoPanel extends JPanel {
         buttonSalvar.setBounds(10, 480, 100, 25);
         add(buttonSalvar);
 
-        buttonCancelar = new JButton("Cancelar");
-        buttonCancelar.setBounds(120, 480, 100, 25);
-        add(buttonCancelar);
-        
         buttonVoltar = new JButton("Voltar");
-        buttonVoltar.setBounds(120, 520, 100, 25);
+        buttonVoltar.setBounds(120, 480, 100, 25);
         add(buttonVoltar);
         
         buttonVoltar.addActionListener(e -> mainView.showPanel("ClientePanel"));
+        buttonSalvar.addActionListener(e -> buttonSalvarActionPerformed(e));
         
         
     }
 
-    public void addSalvarListener(ActionListener listener) {
-        buttonSalvar.addActionListener(listener);
+    public void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {
+       this.revisaoCTRL.registrarRevisao();
     }
 
-    public void addCancelarListener(ActionListener listener) {
-        buttonCancelar.addActionListener(listener);
-    }
-
+    
     public void setDetalhesRevisao(String data, String hora, String oficina,
                                    String modeloVeiculo,
                                    String detalhesServico) {
@@ -98,6 +97,10 @@ public class RevisaoPanel extends JPanel {
 
     public String getDetalhesServico() {
         return textAreaDetalhesServico.getText();
+    }
+
+    public MainView getMainView() {
+        return mainView;
     }
 }
 

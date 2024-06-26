@@ -3,21 +3,24 @@ package Controller;
 import Model.Oficina;
 
 import Controller.LoginCTRL;
+import Model.Revisao;
+
 
 public class OficinaCTRL {
 
     private Oficina oficina;
     private LoginCTRL loginCTRL;
+    private RevisaoCTRL revisaoCTRL;
     
-        public OficinaCTRL(LoginCTRL loginCTRL){
+    public OficinaCTRL(LoginCTRL loginCTRL){
             this.loginCTRL= loginCTRL;
-        }
+    }
     
         public OficinaCTRL(){
             
-        }
+    }
     
-        public void registrarOficina(Oficina oficina) {
+    public void registrarOficina(Oficina oficina) {
         // Aqui você pode inserir o cliente no banco de dados
         // Para este exemplo, vamos apenas imprimir os dados do cliente
         System.out.println("Oficina registrada: " + oficina.getNome());
@@ -26,10 +29,12 @@ public class OficinaCTRL {
         System.out.println(oficina.getSenha());
     }
         
-        public void puxarOficina(){
+    public void puxarOficina(){
         oficina = loginCTRL.entrarNoSistemaOficina();
         System.out.println(oficina);
         
     }
+    
+    
         
 }

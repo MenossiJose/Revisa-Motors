@@ -41,9 +41,7 @@ public class ClienteCTRL {
     //Função para pegar o Cliente do Login
     //Todo o resto de manipulação tem que usar o cliente do login
     public void puxarCliente(){
-        //Gambiarra, ja que que fiz merda e não da pra puxar as coisa da mainview
-        //incializei um controller de veiculo aqui mesmo e outro no panel, o do panel so pega os parametros
-        //esse aqui ta puxando o cliente do bd
+        //Agora da pra puxar o cliente la da MainView entao ta safe
         this.cliente = loginCTRL.entrarNoSistemaCliente();
         System.out.println(getCliente().getNome());
 

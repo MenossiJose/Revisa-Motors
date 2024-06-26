@@ -74,7 +74,7 @@ public class Veiculopanel extends JPanel {
     }
     
      private void buttonRegistrarActionPerformed(java.awt.event.ActionEvent evt){
-        veiculo = mainView.getVeiculo();
+        Veiculo veiculo = new Veiculo();
         String marca = getTextFieldMarca().getText();
         String modelo = getTextFieldModelo().getText();
         int ano = Integer.parseInt(getTextFieldAno().getText());
@@ -84,6 +84,14 @@ public class Veiculopanel extends JPanel {
         veiculo.setMarca(marca);
         veiculo.setPlaca(placa);
         this.veiculoCTRL.registrarVeiculoCliente(veiculo);
+        limparCampos();
+    }
+     
+     public void limparCampos(){
+        textFieldMarca.setText("");
+        textFieldModelo.setText("");
+        textFieldAno.setText("");
+        textFieldPlaca.setText("");
     }
 
     public JTextField getTextFieldMarca() {

@@ -53,14 +53,16 @@ public class ClientePanel extends JPanel {
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));
         buttonAdicionarVeiculo.addActionListener(e -> mainView.showPanel("VeiculoPanel"));
         buttonAgendarRevisao.addActionListener(e -> mainView.showPanel("RevisaoPanel"));
-        
+        buttonConsultarHistorico.addActionListener(e -> mainView.showPanel("HistoricoPanel"));
     }
     public void atualizarListaVeiculos(List<Veiculo> veiculos) {
         listModelVeiculos.clear();
         for (Veiculo veiculo : veiculos) {
-            listModelVeiculos.addElement(veiculo.getMarca() + " " + veiculo.getModelo());
+            listModelVeiculos.addElement(veiculo.getMarca() + " " + veiculo.getModelo() + " " +veiculo.getPlaca());
         }
     } 
+    
+    
     
     
 

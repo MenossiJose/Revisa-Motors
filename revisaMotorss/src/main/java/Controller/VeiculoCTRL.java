@@ -2,7 +2,6 @@ package Controller;
 
 import View.Veiculopanel;
 import View.ClientePanel;
-
 import Model.Cliente;
 import Model.Veiculo;
 
@@ -25,6 +24,7 @@ public class VeiculoCTRL {
         this.veiculo = veiculo;
         this.cliente = view.getMainView().getCliente();
         colocarVeiculoNaTabela(veiculo);
+        view.getMainView().showPanel("ClientePanel");
     }
     
     public void colocarVeiculoNaTabela(Veiculo veiculo){
@@ -39,6 +39,8 @@ public class VeiculoCTRL {
         clientePanel.atualizarListaVeiculos(cliente.getVeiculos());
         
     }
+    
+    
    
     
 }
