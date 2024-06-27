@@ -24,15 +24,6 @@ public class Cliente {
         this.veiculos.add(veiculo);
     }
     
-   /* public Cliente (String nome, int cpf, String email, String senha, Veiculo veiculos, Revisao revisoes){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.senha = senha;
-        this.veiculos = veiculos;
-        this.revisoes = revisoes;
-    }*/
-    
     public Cliente(){
         this.veiculos = new ArrayList<>(); 
     }

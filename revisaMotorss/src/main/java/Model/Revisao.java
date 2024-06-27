@@ -1,13 +1,11 @@
 package Model;
 
 public class Revisao {
-    //private int codigo;
     private String cliente;
     private String oficina;
     private String veiculo;
     private String data;
     private String horas;
-    //private String andamento;
     private String servico;
     
     public Revisao(String cliente, String oficina, String veiculo

@@ -61,7 +61,6 @@ public class ClienteCTRL {
     //Função para pegar o Cliente do Login
     //Todo o resto de manipulação tem que usar o cliente do login
     public void puxarCliente(){
-        //Agora da pra puxar o cliente la da MainView entao ta safe
         this.cliente = loginCTRL.entrarNoSistemaCliente();
         System.out.println(getCliente().getNome());
 

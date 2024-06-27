@@ -31,12 +31,8 @@ public class RevisaoCTRL {
         String modeloVeiculo = view.textFieldModeloVeiculo.getText();
         String detalhesServico = view.textAreaDetalhesServico.getText();
     
-        //Aqui valida no BD, puxa os nome la, se for passar os objeto ali no painel vai ser mais um dia de trampo
-        //Ve se tem como validar os veiculos também, se não tiver como ta safe
         if(oficina.getNome() != oficinaNome){
             System.out.println("Oficina Invalida");
-            //Aqui não funciona pq ele ta comparando os tipos eu acho ,dai ve como fica no Bd,
-            //Se nao der certo, vamo fingir q da certo no video.
         }
         revisao.setData(data);
         revisao.setHoras(hora);
