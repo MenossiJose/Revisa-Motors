@@ -16,6 +16,11 @@ public class RegistroClientePanel extends JPanel {
     private JPasswordField passwordField;
     private JButton buttonRegistrar;
     private JButton buttonVoltar;
+    private ClienteCTRL ClienteCTRL;
+    
+    public void setClienteCTRL(ClienteCTRL clienteCTRL) {
+    this.ClienteCTRL = clienteCTRL;
+}
 
     public RegistroClientePanel(MainView mainView) {
         this.mainView = mainView;
@@ -64,30 +69,26 @@ public class RegistroClientePanel extends JPanel {
         buttonVoltar.addActionListener(e -> mainView.showPanel("LoginPanel"));
         
          buttonRegistrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ClienteCTRL clienteCTRL = mainView.getClienteCTRL();
-                
-                if (clienteCTRL != null) {
-                    String nome = textFieldNome.getText();
-                    int cpf = Integer.parseInt(textFieldCPF.getText());
-                    String email = textFieldEmail.getText();
-                    char[] passwordChars = passwordField.getPassword();
-                    String password = new String(passwordChars);
-                    
-                    Cliente cliente = new Cliente(nome, cpf, email, password);
-                    clienteCTRL.registrarCliente(cliente);
-                    
-                    // Insere cliente no banco de dados usando ClienteCTRL
-                    //clienteCTRL.inserirCliente(cliente);
-                    
-                    mainView.showPanel("LoginPanel");
-                    
-                } else {
-                    JOptionPane.showMessageDialog(RegistroClientePanel.this, "Erro: ClienteCTRL não inicializado corretamente.");
-                }
-            }
-        });
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        ClienteCTRL clienteCTRL = mainView.getClienteCTRL(); // Obtém o ClienteCTRL da MainView
+
+        if (clienteCTRL != null) {
+            String nome = textFieldNome.getText();
+            int cpf = Integer.parseInt(textFieldCPF.getText());
+            String email = textFieldEmail.getText();
+            char[] passwordChars = passwordField.getPassword();
+            String password = new String(passwordChars);
+
+            Cliente cliente = new Cliente(nome, cpf, email, password);
+            clienteCTRL.registrarCliente(cliente);
+
+            mainView.showPanel("LoginPanel");
+        } else {
+            JOptionPane.showMessageDialog(RegistroClientePanel.this, "Erro: ClienteCTRL não inicializado corretamente.");
+        }
+    }
+});
     }
     
 }

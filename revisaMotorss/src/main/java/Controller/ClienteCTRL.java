@@ -9,33 +9,53 @@ import Model.Veiculo;
 
 import Controller.LoginCTRL;
 import Controller.VeiculoCTRL;
+import DAO.ClienteDAO;
+import DAO.ConexaoDAO;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class ClienteCTRL {
     private Cliente cliente;
     private LoginCTRL loginCTRL;
+    
+     private ClienteDAO clienteDAO;
+    
+    Connection conn;
 
    
-    //private VeiculoCTRL veiculoCTRL;
-    
-    //Construtor na MainView para fz registro
-    public ClienteCTRL(){
-        
+    public ClienteCTRL() {
+        this.clienteDAO = new ClienteDAO(); // Inicialize clienteDAO no construtor padrão
     }
-    
-    //Construtor no LoginPanel para o login
+
     public ClienteCTRL(LoginCTRL loginCTRL) {
         this.loginCTRL = loginCTRL;
+        this.clienteDAO = new ClienteDAO(); // Inicialize clienteDAO no construtor que recebe LoginCTRL
     }
   
-    //Função apenas para criar e inserir o cliente no BD
-    public void registrarCliente(Cliente cliente) {
-        // Aqui você pode inserir o cliente no banco de dados
-        // Para este exemplo, vamos apenas imprimir os dados do cliente
-        System.out.println("Cliente registrado: " + cliente.getNome());
-        System.out.println(cliente.getCpf());
-        System.out.println(cliente.getEmail());
-        System.out.println(cliente.getSenha());
+    public ResultSet autenticacaoCliente(Cliente objcliente){
+        conn = new ConexaoDAO().conectaBD();
+        
+        try {
+            String sql = "Select * from cliente where nome = ? and senha = ?";
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, objcliente.getNome());
+            pstm.setString(2, objcliente.getSenha());
+            
+            ResultSet rs = pstm.executeQuery();
+            return rs;
+            
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Cliente: " + erro);
+            return null;
+        }
     }
+    
 
 
     //Função para pegar o Cliente do Login
@@ -47,6 +67,35 @@ public class ClienteCTRL {
 
     }
 
+    public void registrarCliente(Cliente cliente) {
+        String senhaHash = hashPassword(cliente.getSenha());
+        cliente.setSenha(senhaHash);
+        if (clienteDAO != null) {
+            clienteDAO.registrarCliente(cliente);
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro: clienteDAO não inicializado corretamente.");
+        }
+    }
+
+    public Cliente buscarClientePorCPF(int cpf) {
+        return clienteDAO.buscarClientePorCPF(cpf);
+    }
+
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }

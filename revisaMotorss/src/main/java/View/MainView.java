@@ -65,6 +65,8 @@ public class MainView extends JFrame {
         veiculoPanel = new Veiculopanel(this);
         revisaoPanel = new RevisaoPanel(this);
         historicoPanel = new HistoricoPanel(this);
+        registroClientePanel.setClienteCTRL(clienteCTRL);
+        registroOficinaPanel.setOficinaCTRL(oficinaCTRL);
         
         revisaoCTRL.setController(revisaoPanel);
  
@@ -118,6 +120,7 @@ public class MainView extends JFrame {
     public OficinaPanel getOficinaPanel() {
         return oficinaPanel;
     }
+   
     
     public RevisaoCTRL getRevisaoCTRL(){
         return revisaoCTRL;

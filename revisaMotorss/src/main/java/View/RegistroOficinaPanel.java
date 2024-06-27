@@ -14,10 +14,17 @@ public class RegistroOficinaPanel extends JPanel {
     private JPasswordField passwordField;
     private JButton buttonRegistrar;
     private JButton buttonVoltar;
+    private OficinaCTRL oficinaCTRL;
+    
+    public void setOficinaCTRL(OficinaCTRL oficinaCTRL) {
+        this.oficinaCTRL = oficinaCTRL;
+    }
+
 
     public RegistroOficinaPanel(MainView mainView) {
         this.mainView = mainView;
         setLayout(null);
+        
 
         JLabel labelNome = new JLabel("Nome:");
         labelNome.setBounds(30, 10, 100, 25);
@@ -86,4 +93,6 @@ public class RegistroOficinaPanel extends JPanel {
             }
         });
     }
+
+   
 }
